@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class DocumentoController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra la lista de documentos es views.documents.
      *
      * @return \Illuminate\Http\Response
      */
@@ -30,7 +30,7 @@ class DocumentoController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Guarda en la base de datos un nuevo documento que está relacionado a un usuario existente en la base de datos.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -81,7 +81,7 @@ class DocumentoController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Elimina un documento de la base de datos que está relacionado a un usuario existente.
      *
      * @param  \App\Documento  $documento
      * @return \Illuminate\Http\Response
@@ -91,6 +91,10 @@ class DocumentoController extends Controller
         $docto = DB::table("documentos")->where('id', $id)->delete();
         return redirect()->action("DocumentoController@index");
     }
+
+    /**
+     * Función que se llama en javascript, permite poblar la lista de usuarios en views.adddocument con los nombres de los usuarios y sus respectivas ids de la base de datos
+     */
 
     public function getNombre(){
         $datas = DB::table('users')->where("tipo_usuario", "!=", "1")->get();

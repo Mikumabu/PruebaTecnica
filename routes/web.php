@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', "HomeController@getHome")->name("welcome");
 
 Auth::routes();
+//Rutas que solo puede acceder un usuario logueado y, combinado con los blade, solo puede ser administrador
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/admin', function(){
         return view("admin");
@@ -35,6 +36,7 @@ Route::group(['middleware' => 'auth'], function(){
     //Rutas referentes a la documentacion
     
     Route::get("/docs", "DocumentoController@index")->name("docs");
+    //CRUD de documentos
     Route::get("/docs/adddoc", function(){
         return view("adddocument");
     })->name("adddoc");
